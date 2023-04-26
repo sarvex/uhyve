@@ -8,7 +8,7 @@ authors = [
 ]
 description = "The interface between uhyve and a guest VM"
 repository = "https://github.com/hermitcore/uhyve"
-license = "MIT/Apache-2.0"
+license = "MIT OR Apache-2.0"
 keywords = ["hypervisor", "unikernel", "hermit"]
 categories = ["os"]
 
