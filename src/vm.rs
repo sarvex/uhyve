@@ -325,7 +325,6 @@ pub trait Vm {
 	fn kernel_path(&self) -> &Path;
 	fn create_cpu(&self, id: u32) -> HypervisorResult<UhyveCPU>;
 	fn set_boot_info(&mut self, header: *const RawBootInfo);
-	fn verbose(&self) -> bool;
 	fn init_guest_mem(&self);
 
 	unsafe fn load_kernel(&mut self) -> LoadKernelResult<()> {
@@ -355,9 +354,7 @@ pub trait Vm {
 		let boot_info = BootInfo {
 			hardware_info: HardwareInfo {
 				phys_addr_range: arch::RAM_START..arch::RAM_START + vm_mem_len as u64,
-				serial_port_base: self
-					.verbose()
-					.then(|| SerialPortBase::new(UHYVE_UART_PORT.into()).unwrap()),
+				serial_port_base: SerialPortBase::new(UHYVE_UART_PORT.into()),
 				device_tree: None,
 			},
 			load_info,
